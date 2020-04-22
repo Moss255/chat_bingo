@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+  }
+
+  .c_board {
+    margin: 1em;
+  }
+  
+  @media (min-width: 300px) {
+      button {
+          float: left;
+          width: 20%;
+          padding: 10px;
+          background-color:#aaa;
+          border-color: #000000;
+          border-style: solid;
+          height: 100px;
+          font-size: xx-small;
+      }
+  };
+  
+  @media (min-width: 767px) {
+      button {
+          float: left;
+          width: 20%;
+          padding: 10px;
+          background-color:#aaa;
+          border-color: #000000;
+          border-style: solid;
+          height: 100px;
+          font-size: medium;
+      }
+  }
+  
+  @media (min-width: 992px) {
+      button {
+          float: left;
+          width: 20%;
+          padding: 10px;
+          background-color:#aaa;
+          border-color: #000000;
+          border-style: solid;
+          height: 100px;
+          font-size: medium;
+      }
+  
+      button {
+          font-size: xx-small;
+      }
+  }
+  
+  @media (min-width: 1200px) {
+      button {
+          float: left;
+          width: 20%;
+          padding: 10px;
+          background-color:#aaa;
+          border-color: #000000;
+          border-style: solid;
+          height: 100px;
+      }
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  textarea {
+      height: 250px !important;
+  }
