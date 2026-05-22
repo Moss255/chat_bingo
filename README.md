@@ -1,68 +1,32 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Chat Bingo
 
-## Available Scripts
+A small bingo game built with plain HTML and Web Components — no build step,
+no framework, no dependencies to install.
 
-In the project directory, you can run:
+Enter a game code and a list of bingo entries (one per line), hit **Go**, and
+you get a 5×5 board. The board is deterministic: the same game code always
+produces the same board, so everyone using a given code plays the same one.
+Tap a square to mark it.
 
-### `npm start`
+## Running it
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Just open `index.html` in a browser. It also works served from any static
+host (it's all static files), which is how it's deployed.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Files
 
-### `npm test`
+| File            | Purpose                                                              |
+| --------------- | ------------------------------------------------------------------- |
+| `index.html`    | Page shell; loads styles and scripts and mounts `<bingo-app>`.      |
+| `bingo.js`      | Deterministic cell-selection logic (seeded from the game code).     |
+| `components.js` | The custom elements: `bingo-app`, `bingo-input`, `bingo-chart`, `bingo-cell`. |
+| `styles.css`    | Layout and board styling.                                           |
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How the board is generated
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+`bingo.js` seeds a PRNG from the full game code, deterministically shuffles the
+entries you typed in, and takes the first 25 to fill the board. The same game
+code and entries always produce the same board (so it can be shared), while
+different codes produce different boards. Every entry is eligible, so a board
+never has blank or repeated squares (the input form requires at least 25
+entries).
